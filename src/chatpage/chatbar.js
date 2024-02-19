@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Profile from '../assets/profile.jfif'
+import Profile from '../assets/profile.jfif';
+import { IoIosSearch } from "react-icons/io";
 
 const ChatBar = ({ socket }) => {
   const [users, setUsers] = useState([]);
@@ -14,13 +15,18 @@ const ChatBar = ({ socket }) => {
 
   return (
     <div className="chat__sidebar" >
+      <h2 style={{marginLeft:"10px"}}>Chats</h2>
       <div>
-         <img src={Profile} alt='profile-pic' height="50px" width="50px" style={{borderRadius:"50%"}}/>
-         <div>
-           <input type="text" placeholder="search uesrs" style={{width:"80%",borderRadius:"20px"}}/>
-         </div>
+      <div style={{marginRight:"15px"}}>
+          <input type="text" placeholder="Search" style={{width:"100%",borderRadius:"20px",height:"30px",border:"1px solid grey",paddingLeft:"32px",margin:"8px"}}/><IoIosSearch style={{
+          position: 'absolute',
+          marginLeft: '16px',marginTop:"-30px", // Adjusted marginLeft to position the icon inside the input
+          color: 'grey',
+        }}/>
       </div>
-      <h2>Open Chat</h2>
+        <img src={Profile} alt='profile-pic' height="50px" width="50px" style={{borderRadius:"50%",margin:"10px"}}/>     
+      </div>
+     
       <div>
         <h4 className="chat__header">CONNECTED USERS</h4>
         

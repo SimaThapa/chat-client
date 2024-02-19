@@ -2,35 +2,30 @@ import React, { useState } from 'react';
 import InputEmoji from 'react-input-emoji'
 
 const ChatFooter = ({ socket }) => {
-
   const [message, setMessage] = useState('');
 
-  
-
-  const handleSendMessage = (e) => {
-    e.preventDefault();
-    if (message.trim() && localStorage.getItem('userName')) {
-      socket.emit('message', {
+const handleSendMessage = () => {
+    if (message.trim() && localStorage.getItem('useName')) {
+      socket.emit('message',
+       {
         text: message,
         name: localStorage.getItem('userName'),
         id: `${socket.id}${Math.random()}`,
         socketID: socket.id,
-      });
+      }
+      )
+      ;
     }
     setMessage('');
   };
   
-  // const [ text, setText ] = useState('')
-  
-      function handleOnEnter (text) {
+  const handleOnEnter = (text)=> {
         console.log('enter', text)
-      }
+  }
       
-
- 
   return (
     <div className="chat__footer">
-      <form className="form" onSubmit={handleSendMessage}>
+      <form className="form">
       <InputEmoji
           value={message}
           onChange={setMessage}
@@ -47,7 +42,7 @@ const ChatFooter = ({ socket }) => {
           onChange={(e) => setMessage(e.target.value)}
         /> */}
            
-        <button className="sendBtn" >
+        <button className="sendBtn" onClick={handleSendMessage} >
           SEND 
          </button>
       </form>
