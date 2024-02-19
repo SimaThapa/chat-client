@@ -1,16 +1,22 @@
 import React ,{useState} from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Link } from "react-router-dom";
+// import { useNavigate } from 'react-router-dom';
+
+import { Link, useNavigate } from "react-router-dom";
+import {useDispatch} from "react-redux";
 import './login_page.css';
 import { FaLock} from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
+import { login } from '../../redux/authSlice';
 
 const LoginPage = ({socket}) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  
   const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
   const handleSubmit = async (e) => {
+<<<<<<< HEAD
     e.preventDefault();
     if (handleInputErrors({ email, password })) {
 
@@ -32,8 +38,23 @@ const LoginPage = ({socket}) => {
       }
 
       return true;
+=======
+      e.preventDefault();
+      if(!email || !password) return;
+
+      console.log("Hello");
+      dispatch(login({email,password})).then((res)=>{
+        if(login.fulfilled.match(res)
+        )
+      {
+        navigate("/chat")
+    }
+    })
+>>>>>>> cedbdb6995fcf0090b63019df5d6d46513e62259
   }
-  
+
+
+    
   return (
     <div className='wrapper'>
      
@@ -50,17 +71,7 @@ const LoginPage = ({socket}) => {
 							onChange={(e) => setPassword(e.target.value)} />
               <FaLock className='icon'/>
           </div>
-          <div className="remember-forget">
-              <label>
-                  <input type='checkbox' />
-                  Remember me
-              </label>
-
-              {/* ToDo */}
-              <Link to='/signup'>Forget password</Link>
-          </div>
-          
-
+        
           <button type='submit' >Login</button>
           <div className='register-link'>
               <p>Don't have an account? <Link to='/signup'>Sign Up</Link></p>
