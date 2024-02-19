@@ -22,6 +22,18 @@ const LoginPage = ({socket}) => {
       if(login.fulfilled.match(res))
     {
       navigate("/chat")
+      e.preventDefault();
+      if(!email || !password) return;
+
+      console.log("Hello");
+      dispatch(login({email,password})).then((res)=>{
+        if(login.fulfilled.match(res)
+        )
+      {
+        navigate("/chat")
+    }
+    })
+
   }
   })
 
