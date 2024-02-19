@@ -22,18 +22,19 @@ const ChatBar = ({ socket }) => {
       </div>
       <h2>Open Chat</h2>
       <div>
-        <h4 className="chat__header">ACTIVE USERS</h4>
+        <h4 className="chat__header">CONNECTED USERS</h4>
         
         <div className="chat__users">
           {users.map((user) => (
               <p key={user.socketID}>
-                  <button style={{border:"hidden"}} onClick={()=>handleSelectUser(user?.userName,user?.id)}>
+                  <button style={{border:"hidden"}} onClick={()=>handleSelectUser(user?.userName)}>
                     <div>
                      {user.userName}
                      </div>
                   </button>
               </p>
             ))}
+            
          
         </div>
         

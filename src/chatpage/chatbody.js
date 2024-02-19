@@ -9,14 +9,17 @@ const ChatBody = ({ messages }) => {
     navigate('/');
     window.location.reload();
   };
+  
 
   return (
     <>
       <header className="chat__mainHeader">
         <p>
-          <span>
-            
-          </span>
+          
+          {/* <div className="message__chats" key={messages.id}>
+                <p>{messages.name}</p>
+          </div>      
+           */}
         </p>
         <button className="leaveChat__btn" onClick={handleLeaveChat}>
           Log Out
