@@ -16,29 +16,6 @@ const LoginPage = ({socket}) => {
 	const [password, setPassword] = useState("");
 
   const handleSubmit = async (e) => {
-<<<<<<< HEAD
-    e.preventDefault();
-    if (handleInputErrors({ email, password })) {
-
-      socket.emit('newUser', { email:email, password:password, socketID: socket.id });
-      navigate('/chat');
-    }
-
-  };
-
-    function handleInputErrors({ email,password}) {
-    
-      if (!email || !password ) {
-          alert("Please fill in all fields");
-          return false;
-      }
-      if (password.length < 6) {
-          alert("Password must be at least 6 characters");
-          return false;
-      }
-
-      return true;
-=======
       e.preventDefault();
       if(!email || !password) return;
 
@@ -50,7 +27,6 @@ const LoginPage = ({socket}) => {
         navigate("/chat")
     }
     })
->>>>>>> cedbdb6995fcf0090b63019df5d6d46513e62259
   }
 
 
