@@ -6,7 +6,7 @@ import LoginPage from "./components/login/login_page";
 import SignUpPage from './components/signup/signup_page';
 import socketIO from 'socket.io-client';
 
-const socket = socketIO.connect('http://localhost:4000');
+const socket = socketIO.connect('http://localhost:8000');
 
 socket.on('connect', () => {
   console.log('Connected to server');
