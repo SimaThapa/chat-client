@@ -9,8 +9,8 @@ const ChatBar = ({ socket }) => {
     socket.on('newUserResponse', (data) => setUsers(data));
   }, [socket, users]);
 
-  const handleSelectUser=(userName,id)=>{
-    console.log("user name",userName,id)
+  const handleSelectUser=(email)=>{
+    console.log("Email",email)
   }
 
   return (
@@ -18,9 +18,13 @@ const ChatBar = ({ socket }) => {
       <h2 style={{marginLeft:"10px"}}>Chats</h2>
       <div>
       <div style={{marginRight:"15px"}}>
-          <input type="text" placeholder="Search" style={{width:"100%",borderRadius:"20px",height:"30px",border:"1px solid grey",paddingLeft:"32px",margin:"8px"}}/><IoIosSearch style={{
+        
+          <input type="text" placeholder="Search" style={{width:"100%",borderRadius:"20px",height:"30px",border:"1px solid grey",paddingLeft:"32px",margin:"8px"}}
+          />
+          <IoIosSearch style={{
           position: 'absolute',
-          marginLeft: '16px',marginTop:"-30px", // Adjusted marginLeft to position the icon inside the input
+          marginLeft: '16px',marginTop:"-30px",
+      
           color: 'grey',
         }}/>
       </div>
@@ -31,11 +35,11 @@ const ChatBar = ({ socket }) => {
         <h4 className="chat__header">CONNECTED USERS</h4>
         
         <div className="chat__users">
-          {users.map((user) => (
-              <p key={user.socketID}>
-                  <button style={{border:"hidden"}} onClick={()=>handleSelectUser(user?.userName)}>
+          {users.map((email) => (
+              <p key={email.socketID}>
+                  <button style={{border:"hidden"}} onClick={()=>handleSelectUser(email?.email)}>
                     <div>
-                     {user.userName}
+                     {email.email}
                      </div>
                   </button>
               </p>

@@ -9,12 +9,15 @@ const LoginPage = ({socket}) => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (handleInputErrors({ email, password })) {
-      socket.emit('newUser', { email, password, socketID: socket.id });
+
+      socket.emit('newUser', { email:email, password:password, socketID: socket.id });
       navigate('/chat');
     }
+
   };
 
     function handleInputErrors({ email,password}) {

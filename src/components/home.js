@@ -7,9 +7,9 @@ const LinkHome = ({socket}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        localStorage.setItem('userName', userName);
+        localStorage.setItem('email', email);
         //sends the username and socket ID to the Node.js server
-        socket.emit('newUser', { userName, socketID: socket.id });
+        socket.emit('newUser', { email,password, socketID: socket.id });
         navigate('/chat');
         };
         return (
