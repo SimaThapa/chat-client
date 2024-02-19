@@ -9,8 +9,8 @@ const ChatBar = ({ socket }) => {
     socket.on('newUserResponse', (data) => setUsers(data));
   }, [socket, users]);
 
-  const handleSelectUser=(email)=>{
-    console.log("Email",email)
+  const handleSelectUser=(userName,id)=>{
+    console.log("user name",userName,id)
   }
 
   return (
