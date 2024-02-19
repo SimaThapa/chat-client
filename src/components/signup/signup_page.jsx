@@ -19,11 +19,15 @@ const SignUpPage = () => {
 
     const handleSubmit = async (e) => {
 		e.preventDefault();
-        if ( !inputs?.fullName || !inputs?.username || !inputs?.email || !inputs?.password || !inputs?.confirmPassword) {
-            return;
-        }
+        // if ( !inputs?.fullName || !inputs?.username || !inputs?.email || !inputs?.password || !inputs?.confirmPassword) {
+        //     return;
+        // }
 
-        dispatch(signup(inputs))
+        dispatch(signup(inputs)).then((res)=>{
+            if(signup.fulfilled.match(res)){
+                navigate("/login");
+            }
+        })
     }
 
 

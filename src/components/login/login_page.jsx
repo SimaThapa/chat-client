@@ -16,6 +16,12 @@ const LoginPage = ({socket}) => {
 	const [password, setPassword] = useState("");
 
   const handleSubmit = async (e) => {
+
+    e.preventDefault();
+    dispatch(login({email,password})).then((res)=>{
+      if(login.fulfilled.match(res))
+    {
+      navigate("/chat")
       e.preventDefault();
       if(!email || !password) return;
 
@@ -27,10 +33,12 @@ const LoginPage = ({socket}) => {
         navigate("/chat")
     }
     })
+
   }
+  })
 
-
-    
+  };
+ 
   return (
     <div className='wrapper'>
      
