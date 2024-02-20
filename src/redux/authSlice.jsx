@@ -11,8 +11,6 @@ const initialState = {
   errorMsg: "",
   successMsg: "",
   userId: null,
-
- 
 };
 
 export const checkAuthAsync = createAsyncThunk(
