@@ -1,13 +1,17 @@
 import React ,{useState} from 'react';
-import { Link } from "react-router-dom";
+import {useDispatch} from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { FaUser , FaLock} from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import './signup_page.css';
+import { signup } from '../../redux/authSlice';
 
 const SignUpPage = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 	const [inputs, setInputs] = useState({
 		fullName: "",
-		userName: "",
+		username: "",
         email:"",
 		password: "",
 		confirmPassword: ""
@@ -15,30 +19,13 @@ const SignUpPage = () => {
 
     const handleSubmit = async (e) => {
 		e.preventDefault();
-	};
-//for verification
-    function handleInputErrors({fullName,userName,email, password, confirmPassword }) {
-        if ( !fullName || !userName || !email || !password || !confirmPassword) {
-            alert("Please fill in all fields");
-            return false;
-        }
-    
-        if (password !== confirmPassword) {
-            alert("Passwords do not match");
-            return false;
-        }
-    
-        if (password.length < 6) {
-            alert("Password must be at least 6 characters");
-            return false;
+        if ( !inputs?.fullName || !inputs?.username || !inputs?.email || !inputs?.password || !inputs?.confirmPassword) {
+            return;
         }
 
-        if(userName.length<3){
-            alert("Name should be of atleast 3 words");
-        }
-    
-        return true;
+        dispatch(signup(inputs))
     }
+
 
     return (
         <div className='wrapper'>
@@ -53,8 +40,8 @@ const SignUpPage = () => {
           </div>
           <div className="input-box">
               <input type='text' name="user_name" placeholder='UserName' 
-			  value={inputs.userName}
-              onChange={(e) => setInputs({ ...inputs, userName: e.target.value })}/>
+			  value={inputs.username}
+              onChange={(e) => setInputs({ ...inputs, username: e.target.value })}/>
               <FaUser className='icon'/>
           </div>
           <div className="input-box">
@@ -74,7 +61,7 @@ const SignUpPage = () => {
           </div>
          
 
-          <button type='submit' onClick={()=>{handleInputErrors(inputs)}}><Link to="/login">Sign Up</Link></button>
+          <button type='submit' >Sign Up</button>
           <div className='register-link'>
               <p>Already have an account? <Link to = "/login">Sign In</Link></p>
           </div>
